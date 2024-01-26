@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 .main-bg{
-    background-image: url(../public/main-background.jpg);
+    background-image: url(../public/matrix-bg.jpg);
+    background-size: cover;
 }
