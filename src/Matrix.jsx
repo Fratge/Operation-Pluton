@@ -6,9 +6,9 @@ const MatrixRain = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    const katakana = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
-    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const nums = '0123456789';
+    const katakana = '0000000000000';
+    const latin = '1111111111111';
+    const nums = '00000000000000000';
     const alphabet = katakana + latin + nums;
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
