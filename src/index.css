@@ -1,8 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.main-bg{
-    background-image: url(../public/matrix-bg.jpg);
-    background-size: cover;
-}
