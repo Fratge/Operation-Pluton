@@ -6,3 +6,22 @@
 .bg-shadow{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+.shake-animation {
+    animation: shake 0.5s ease-in-out infinite;
+  }
+  
+  @keyframes shake {
+    0% { transform:  rotate(0deg); }
+    25% { transform:  rotate(-2deg); }
+    50% { transform:  rotate(2deg); }
+    75% { transform:  rotate(-2deg); }
+    100% { transform:  rotate(0deg); }
+  }
+
+  .teste{
+    position: absolute;
+    top: -20vh;
+    right: 18vw;
+    transform: translate(50%, -50%);
+  }
