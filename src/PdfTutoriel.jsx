@@ -5,20 +5,20 @@ import CloseWindow from './assets/close_window.svg';
 import MinimizeWindow from './assets/minimize_window.svg';
 import RestoreWindow from './assets/restore_window.svg';
 
-function Pdf3({togglePdf3}) {
+function PdfTutoriel({togglePdfTutoriel}) {
     const [isDragging, setIsDragging] = useState(false);
     const [position, setPosition] = useState({ x: 150, y: 0});
     const [initialPosition, setInitialPosition] = useState({ x: 150, y: 150 });
 
     useEffect(() => {
-        const savedPosition = localStorage.getItem('pdf3Position');
+        const savedPosition = localStorage.getItem('pdfTutorielPosition');
         if (savedPosition) {
             setPosition(JSON.parse(savedPosition));
         }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem('pdf3Position', JSON.stringify(position));
+        localStorage.setItem('pdfTutorielPosition', JSON.stringify(position));
     }, [position]);
 
     const handleMouseDown = (e) => {
@@ -53,7 +53,7 @@ function Pdf3({togglePdf3}) {
             <div className='h-[383px]  w-[565px]'>
                 <embed src={PDF1} type="application/pdf" style={{ width: '100%', height: '100%' }}  />
             </div>
-            <div className='web-bar flex items-center justify-end gap-4  border-2 border-solid border-[#525151]' onClick={togglePdf3}>
+            <div className='web-bar flex items-center justify-end gap-4  border-2 border-solid border-[#525151]' onClick={togglePdfTutoriel}>
                 <img src={MinimizeWindow} alt="" className='h-5' />
                 <img src={RestoreWindow} alt="" className='h-5' />
                 <img src={CloseWindow} alt="" className='h-3' />
@@ -62,4 +62,4 @@ function Pdf3({togglePdf3}) {
     );
 }
 
-export default Pdf3;
+export default PdfTutoriel;

@@ -2,7 +2,7 @@ import { Routes, Route} from 'react-router-dom';
 
 // Pages
 import Landing from './Landing';
-import Tutoriel from './Tutoriel';
+import Tutoriel from './PdfTutoriel';
 import Pdf3 from './Pdf3';
 import Questionnaire from './Questionnaire';
 

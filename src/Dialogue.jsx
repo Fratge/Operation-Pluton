@@ -5,7 +5,7 @@ import CloseWindow from './assets/close_window.svg';
 import MinimizeWindow from './assets/minimize_window.svg';
 import RestoreWindow from './assets/restore_window.svg';
 
-function Dialogue(){
+function Dialogue({toggleDialogue}){
     const [isDragging, setIsDragging] = useState(false);
     const [position, setPosition] = useState({ x: 150, y: -840});
     const [initialPosition, setInitialPosition] = useState({ x: 150, y: 150 });
@@ -47,7 +47,7 @@ function Dialogue(){
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}>
         <AudioPlayer />
-        <div className='pl-5 py-6 TextWritter text-[#27ed15] '>
+        <div className='pl-5 py-6 TextWritter text-[#27ed15] select-none'>
           <p>John : Salut j'éspère que tu va biens !</p>
           <p>Marc Zukerberg : Oui très bien merci ! </p>
           <p>John : Salut j'éspère que tu va biens !</p>
@@ -71,7 +71,7 @@ function Dialogue(){
 
         </div> */}
 
-        <div className='web-bar flex items-center justify-end gap-4  border-2 border-solid border-[#525151]'>
+        <div className='web-bar flex items-center justify-end gap-4  border-2 border-solid border-[#525151]' onClick={toggleDialogue}>
           <img src={MinimizeWindow} alt="" className='h-5' />
           <img src={RestoreWindow} alt="" className='h-5' />
           <img src={CloseWindow} alt="" className='h-3' />

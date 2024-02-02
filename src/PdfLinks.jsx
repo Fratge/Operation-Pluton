@@ -1,18 +1,17 @@
 import React, { useState, useEffect  } from 'react';
 import Folder from './assets/folder.png';
 import CadenasFerme from './assets/cadenas-fermer.png';
-import CartePostale from './assets/Carte-Postale.png';
 import { Link } from 'react-router-dom';
 import CloseWindow from './assets/close_window.svg';
 import MinimizeWindow from './assets/minimize_window.svg';
 import RestoreWindow from './assets/restore_window.svg';
+import PdfTutoriel from './PdfTutoriel';
 
-function PdfLinks() {
+function PdfLinks({ togglePdfTutoriel, togglePdfLinks, togglePostCard, togglePdf3 }) {
     const [isPasswordContainerVisible, setPasswordContainerVisible] = useState(false);
     const [isPasswordContainerVisible2, setPasswordContainerVisible2] = useState(false);
     const [isPasswordContainerVisible3, setPasswordContainerVisible3] = useState(false);
     const [isPasswordContainerVisible4, setPasswordContainerVisible4] = useState(false);
-    const [isPostcardVisible, setPostcardVisible] = useState(false);
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const [password3, setPassword3] = useState('');
@@ -36,12 +35,15 @@ function PdfLinks() {
     const OpenPasswordContainer = () => {
         setPasswordContainerVisible(true);
         if(isPasswordCorrect){
-            setPostcardVisible(true);
+            togglePostCard(true);
         }
     };
 
     const OpenPasswordContainer2 = () => {
         setPasswordContainerVisible2(true);
+        if(isPasswordCorrect){
+            togglePdf3(true);
+        }
     };
 
     const OpenPasswordContainer3 = () => {
@@ -53,9 +55,9 @@ function PdfLinks() {
     };
 
     const handlePasswordSubmit = () => {
-        localStorage.setItem('isPasswordCorrect', '1');
         if (password === 'password') {
-            setPostcardVisible(true);
+            localStorage.setItem('isPasswordCorrect', '1');
+            togglePostCard();
             setPasswordCorrect(true)
         } else {
             setShakeAnimation(true);
@@ -69,6 +71,7 @@ function PdfLinks() {
     const handlePasswordSubmit2 = () => {
         if (password2 === 'password2') {
             setPasswordCorrect2(true)
+            togglePdf3();
             localStorage.setItem('isPasswordCorrect2', '1');
         } else {
             setShakeAnimation2(true);
@@ -104,9 +107,7 @@ function PdfLinks() {
             }, 500); 
         }
     };
-    const hidePostcard = () => {
-        setPostcardVisible(false);
-    };
+
 
     const localStoragePassword1 = localStorage.getItem("isPasswordCorrect");
     const localStoragePassword2 = localStorage.getItem("isPasswordCorrect2");
@@ -152,7 +153,7 @@ function PdfLinks() {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}>
             <div className='w-[450px]'>
-                <Link to="/tutoriel" className='flex items-center gap-2'><img src={Folder} alt="" className='h-5' />tutoriel-jeu.pdf</Link>
+                <p className='flex items-center gap-2 cursor-pointer' onClick={togglePdfTutoriel}><img src={Folder} alt="" className='h-5' />tutoriel-jeu.pdf</p>
                 <div className='flex gap-5'>
                     <Link onClick={OpenPasswordContainer} className='flex items-center gap-2 fit-content'><img src={Folder} alt="" className='h-5' />pdf-mdp.pdf{!isPasswordCorrect && (<img src={CadenasFerme} alt="" className='h-5' />)}</Link>
                     {isPasswordContainerVisible && (localStoragePassword1 !== '1') && (
@@ -177,7 +178,7 @@ function PdfLinks() {
                 </div>
                 {(localStoragePassword1 == '1') && (
                 <div className='flex gap-5'>
-                    <Link onClick={OpenPasswordContainer2} to={isPasswordCorrect2 ? "/questionnaire" : "/"} className='flex items-center gap-2 fit-content'><img src={Folder} alt="" className='h-5' />pdf-etape2mdp.pdf{!isPasswordCorrect2 && (<img src={CadenasFerme} alt="" className='h-5' />)}</Link>
+                    <p onClick={OpenPasswordContainer2} to={isPasswordCorrect2 ? "/questionnaire" : "/"} className='flex items-center gap-2 fit-content cursor-pointer'><img src={Folder} alt="" className='h-5' />pdf-etape2mdp.pdf{!isPasswordCorrect2 && (<img src={CadenasFerme} alt="" className='h-5' />)}</p>
                     {isPasswordContainerVisible2 && (localStoragePassword2 !== '1') && (
                         <div className='bg-black '>
                             <input
@@ -250,13 +251,9 @@ function PdfLinks() {
                 )}
             </div>
 
-            {isPostcardVisible && (
-                <div className="teste relative">
-                    <img src={CartePostale} alt="" />
-                    <button onClick={hidePostcard} className='absolute top-[6px] right-[16px]'> &times;</button>
-                </div>
-            )}
-            <div className='web-bar flex items-center justify-end gap-4 border-2 border-solid border-[#525151]' >
+            <div className='web-bar flex items-center justify-end gap-4 border-2 border-solid border-[#525151]'
+                onClick={togglePdfLinks}
+            >
               <img src={MinimizeWindow} alt="" className='h-5' />
               <img src={RestoreWindow} alt="" className='h-5' />
               <img src={CloseWindow} alt="" className='h-3' />
